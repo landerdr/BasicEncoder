@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "BasicEncoder": {
+      "commandName": "Project",
+      "commandLineArgs": "-i \"D:\\Downloads\\test\" -o \"D:\\Downloads\\out\" -if mp3 -ffmpeg \"D:\\Downloads\\ffmpeg-N-99876-g04b37b5d7f-win64-gpl-shared-vulkan\\bin\\ffmpeg.exe\" -opt \"-b:a 128k\""
+    }
+  }
+}
