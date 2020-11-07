@@ -41,6 +41,11 @@ namespace BasicEncoder
                 {
                     ffmpeg = args[++i];
                 }
+                else if (args[i] == "-help")
+                {
+                    Console.WriteLine("-i <source directory> -o <destination directory> [-if <input format>] [-of <output format>] [-opt <ffmpeg options>] [-ffmpeg <path to ffmpeg>]");
+                    return;
+                }
             }
 
 
@@ -78,14 +83,9 @@ namespace BasicEncoder
                     string destFilePath = Path.Combine(destination, Path.ChangeExtension(relPath, outformat));
 
                     Directory.CreateDirectory(absDestPath);
-                    //Console.WriteLine(sourceFilePath);
-                    //Console.WriteLine(relPath);
-                    //Console.WriteLine(dirStruct);
-                    //Console.WriteLine(absDestPath);
-                    //Console.WriteLine(destFilePath);
                     if (!File.Exists(destFilePath))
                     {
-                        Convert($"-hide_banner -i {sourceFilePath} {options} {destFilePath}");
+                        Convert($"-hide_banner -i \"{sourceFilePath}\" {options} \"{destFilePath}\"");
                         Console.WriteLine($"Done converting file [{sourceFilePath}]");
                     }
                 }
@@ -109,6 +109,8 @@ namespace BasicEncoder
                 p.StartInfo.Arguments = parameters;
                 p.Start();
                 p.WaitForExit();
+
+                p.Close();
             }
             return;
         }
